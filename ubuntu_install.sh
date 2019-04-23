@@ -2,19 +2,18 @@
 
 install_tools() {
     sudo apt-get update
-    sudo apt-get install curl
+    sudo apt-get install curl wget -y
 
     if ! [ -x "$(command -v git)" ]; then
-        sudo apt-get install git
+        sudo apt-get install git -y
     fi
 
     if ! [ -x "$(command -v nodejs)" ]; then
-        sudo apt-get install nodejs
-        sudo apt-get install npm
+        sudo apt-get install nodejs npm -y
     fi
 
     if ! [ -x "$(command -v terminator)" ]; then
-        sudo apt-get install terminator
+        sudo apt-get install terminator -y
     fi
 
     if ! [ -x "$(command -v gitkraken)" ]; then
@@ -22,7 +21,7 @@ install_tools() {
         dpkg -i gitkraken-amd64.deb
 
         #libraries about issues on linux
-        sudo apt install libcurl3
+        sudo apt install libcurl3 -y
         sudo ln -s /usr/lib64/libcurl.so.4 /usr/lib64/libcurl-gnutls.so.4
     fi
 }
@@ -42,12 +41,13 @@ install_sdkman() {
 install_code() {
     wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
     sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
-    sudo apt-get install code
+    sudo apt-get update
+    sudo apt-get install code -y
 }
 
 install_python3() {
     if ! [ -x "$(which python3)" ]; then
-        sudo apt-get install python3.7 && python-pip
+        sudo apt-get install python3.7 python-pip -y
     fi
 }
 
@@ -63,7 +63,6 @@ install_angular() {
 
 install_docker() {
     sudo apt-get remove docker docker-engine docker.io containerd runc
-    sudo apt-get update
     sudo apt-get install \
                 apt-transport-https \
                 ca-certificates \
@@ -75,8 +74,7 @@ install_docker() {
                $(lsb_release -cs) \
                stable"
     sudo apt-get update
-    sudo apt-get install docker-ce docker-ce-cli containerd.io
-    sudo docker run hello-world
+    sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 }
 
 main() {
