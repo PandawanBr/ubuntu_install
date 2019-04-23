@@ -1,24 +1,23 @@
 #!/bin/bash
 
 install_tools() {
-    sudo apt-get update && /
-    sudo apt-get install curl /
-                         wget
+    sudo apt-get update
+    sudo apt-get install curl
 
-    if ! [ -x "$(command -v git)"]; then
+    if ! [ -x "$(command -v git)" ]; then
         sudo apt-get install git
     fi
 
-    if ! [ -x "$(command -v nodejs)"]; then
+    if ! [ -x "$(command -v nodejs)" ]; then
         sudo apt-get install nodejs
         sudo apt-get install npm
     fi
 
-    if ! [ -x "$(command -v terminator)"]; then
+    if ! [ -x "$(command -v terminator)" ]; then
         sudo apt-get install terminator
     fi
 
-    if ! [ -x "$(command -v gitkraken)"]; then
+    if ! [ -x "$(command -v gitkraken)" ]; then
         wget https://release.gitkraken.com/linux/gitkraken-amd64.deb
         dpkg -i gitkraken-amd64.deb
 
@@ -47,7 +46,7 @@ install_code() {
 }
 
 install_python3() {
-    if ! [ -x "$(which python3)"]; then
+    if ! [ -x "$(which python3)" ]; then
         sudo apt-get install python3.7 && python-pip
     fi
 }
